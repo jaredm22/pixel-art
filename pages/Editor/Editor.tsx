@@ -127,12 +127,14 @@ export default function Editor() {
                     handleGridClear={clearGrid}
                     handleGridFill={fillGrid}
                 />
-                <div className="grid">
-                    {state.grid.map(r => 
-                        <div className="row">
-                            {r.map(c => <Dot {...c} onSelect={handleGridColorChange}/>)}
-                        </div>    
-                    )}
+                <div className="grid-container">
+                    <div className="grid">
+                        {state.grid.map(r => 
+                            <div className="row">
+                                {r.map(c => <Dot {...c} onSelect={handleGridColorChange}/>)}
+                            </div>    
+                        )}
+                    </div>
                 </div>
             </div>
     )
