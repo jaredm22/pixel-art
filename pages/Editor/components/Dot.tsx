@@ -1,5 +1,3 @@
-import {useState} from 'react';
-
 interface Props {
     color: string,
     h: number,
@@ -10,13 +8,9 @@ interface Props {
 }
 
 export default function Dot(props: Props) {
-    const [state, setState] = useState({
-        x: props.x,
-        y: props.y
-    })
 
     function handleSelect() {
-        props.onSelect(state.x, state.y);
+        props.onSelect(props.x, props.y);
     }
 
     return(

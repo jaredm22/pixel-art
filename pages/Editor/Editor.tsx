@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Dot from './components/Dot';
 import ToolBar from './components/ToolBar';
-import useMousePosition from './components/MousePosition';
 
 export default function Editor() {
 
@@ -14,26 +13,9 @@ export default function Editor() {
         grid: null
     })
 
-    const [mouseDown, setMouseDown] = useState(false);
-
-
-    const { x, y } = useMousePosition();
-
     function handleCurrentColorChange(color: string) {
         setState({...state, currentColor: color})
     }
-
-    const updateMouseDown = ev => {
-        setMouseDown(!mouseDown);
-    };
-    
-    useEffect(() => {
-        window.addEventListener("mousedown", updateMouseDown);
-
-        return () => { 
-            window.removeEventListener("mouseup", updateMouseDown)  
-        };
-    }, []);
 
     function handleGridColorChange(x, y) {
         let updatedGrid = [...state.grid];
@@ -67,7 +49,7 @@ export default function Editor() {
                c.color = state.currentColor;
                return c;
             })
-        )
+        );
 
         setState({
             ...state,
@@ -127,10 +109,7 @@ export default function Editor() {
 
     useEffect(() => {
         window.addEventListener("resize", handleResize, false);
-    }, []);
-
-    console.log(mouseDown);
-      
+    }, []);      
 
     return(
         !state.grid ?
@@ -157,5 +136,4 @@ export default function Editor() {
                 </div>
             </div>
     )
-
 }
